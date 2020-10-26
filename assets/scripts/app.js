@@ -8,8 +8,17 @@ let currentPlayerHealth = chosenMaxLife;
 
 adjustHealthBars(chosenMaxLife);
 
-function attackHendler() {
-    const damage = dealMonsterDamage(ATTACK_VALUE);
+
+function attackMonster(mode) {
+    let maxDamage;
+    
+    if (mode = 'ATTACK') {
+        maxDamage = ATTACK_VALUE;
+    } else if (mode = 'STRONG_ATTACK') {
+        maxDamage = STRONG_ATTACK_VALUE;
+    }
+    
+    const damage = dealMonsterDamage(maxDamage);
     currentMonsterHealth -= damage;
     const pDamage = dealPlayerDamage(M_ATTACk_VALUE);
     currentPlayerHealth -= pDamage;
@@ -21,21 +30,15 @@ function attackHendler() {
     } else if (currentMonsterHealth <= 0 && currentPlayerHealth <= 0) {
         alert("Draw");
     }
+
+}
+
+function attackHendler() {
+    attackMonster('ATTACK');
 }
 
 function strongAttackHandler() {
-    const damage = dealMonsterDamage(STRONG_ATTACK_VALUE);
-    currentMonsterHealth -= damage;
-    const pDamage = dealPlayerDamage(M_ATTACk_VALUE);
-    currentPlayerHealth -= pDamage;
-    
-    if (currentMonsterHealth <= 0 && currentPlayerHealth > 0) {
-        alert("You win!");
-    } else if (currentPlayerHealth <= 0 && currentMonsterHealth > 0) {
-        alert("You lost!");
-    } else if (currentMonsterHealth <= 0 && currentPlayerHealth <= 0) {
-        alert("Draw");
-    }
+    attackMonster('STRONG_ATTACK');
 }
 
 attackBtn.addEventListener('click', attackHendler);
