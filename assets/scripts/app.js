@@ -32,6 +32,7 @@ try {
     console.log(error);
     chosenMaxLife = 100;
     alert('you entered wrong, default 100');
+    // throw error;
 }
 
 
