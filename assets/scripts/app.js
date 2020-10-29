@@ -15,6 +15,7 @@ const enteredValue = prompt('Max Health for you and monster.', '100');
 
 let chosenMaxLife = parseInt(enteredValue);
 let battleLog = [];
+let lastLogedEntry;
 
 if (isNaN(chosenMaxLife) || chosenMaxLife <=0) {
     chosenMaxLife = 100;
@@ -219,9 +220,13 @@ function printLogHandler() {
 //   }
   let i = 0;
   for (const logEntry of battleLog) {
-      console.log(`#${i}`);
-      for (const key in logEntry) {
-          console.log(`${key} => ${logEntry[key]}`);
+      if (!lastLogedEntry && lastLogedEntry !== 0 ||lastLogedEntry < i) {
+          console.log(`#${i}`);
+          for (const key in logEntry) {
+              console.log(`${key} => ${logEntry[key]}`);
+          }
+          lastLogedEntry = i;
+          break;
       }
       i++;
   }
