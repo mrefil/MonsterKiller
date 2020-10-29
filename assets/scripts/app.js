@@ -197,7 +197,17 @@ function printLogHandler() {
 //       i--;
 //       console.log(i);
 //   }
-  console.log(battleLog);
+//   for (let i = 0; i < battleLog.length; i++) {
+//       console.log(battleLog[i]);
+//   }
+  // works only arrays. This will not give indez so we need to add with i variable.
+  let i = 0;
+  for (const logEntry of battleLog) {
+      console.log(logEntry);
+      console.log(i);
+      i++;
+  }
+  
 }
 
 attackBtn.addEventListener('click', attackHendler);
